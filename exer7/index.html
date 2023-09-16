@@ -1,0 +1,41 @@
+<!--takes two inputs with type text, one has the id of price and the other is the id of quantity, the placeholders 
+hold text information that is displayed to the user to inform them of what to input-->
+<input type="text" id="txt-price" placeholder="Enter the price of the item">
+<input type="text" id="txt-quantity" placeholder="Enter the quanity of the item">
+<!--the button id=btn-submit line is a button object of sorts that can be interacted with, it displays the words
+"Calculate" to convey the purpose of the button, meanwhile the div id=output line creates a output that is 
+displayed in a form thats customized by the creator of the code -->
+<button id="btn-submit">Calculate</button>
+<div id="output"></div>
+
+<!--it appears the script holds multiple variables that hold information for the different functions of the code,
+apart from that it appears each variable has a function that allows it to retrieve a element id from the different
+id's created above-->
+<!--It appears the code below the variables hold different mechanics. For example the submitBtn variable is scripted
+to wait for the event where it is interacted with (named click) before it activates the function/script tied to it.
+Apart from that there seems to be variables that takes in the user input value to be amnipulated by the functions
+within the code. It looks like among the functions is a if condition that check if the input is a number or not,
+if it fails the check a "invalid Input" message is displayed to the user. However if the if statement is passed
+successfully, it does a calculation for the total price, rounded to the 0.00 position to accurately represent
+the money format. And lastly there appears to be a output statement that uses something called innerHTML to 
+help display the different bits of information calculated  -->
+<script>
+  var priceInput = document.getElementById('txt-price');
+  var quantityInput = document.getElementById('txt-quantity');
+  var submitBtn = document.getElementById('btn-submit');
+  var output = document.getElementById('output');
+
+  submitBtn.addEventListener('click', function () {
+    var price = priceInput.value;
+    var quanity = quantityInput.value;
+    price = +price;
+    quanity = +quanity;
+    if (Number.isNaN(price) || Number.isNaN(quanity)) {
+      output.innerHTML = 'Invalid input';
+      return;
+    }
+    var totalPrice = price * quanity;
+    totalPrice = Math.round(totalPrice * 100) / 100;
+    output.innerHTML = quanity + ' items at $' + price + ' each is $' + totalPrice;
+  });
+</script>
